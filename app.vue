@@ -38,7 +38,7 @@ useSeoMeta({
 
 .bottom-nav1 {
   position: fixed;
-  bottom: 4rem;
+  bottom: 4.2rem;
   width: 100%;
   z-index: 10;
   /* Ensure it's above other content */
