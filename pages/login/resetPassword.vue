@@ -8,7 +8,7 @@ useSeoMeta({
     twitterCard: 'summary_large_image',
 })
 
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import { useTheme } from 'vuetify'
 const theme = useTheme();
 const route = useRoute()
