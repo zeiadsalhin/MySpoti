@@ -195,7 +195,7 @@ const router = useRouter();
 const authorize = () => {
     const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
     const redirect_uri = process.env.NODE_ENV === 'production'
-        ? 'https://alfastorecommerce.netlify.app/callback'
+        ? 'https://my-spoti.netlify.app/callback'
         : 'http://localhost:3000/callback'; // Replace with your registered redirect URI
 
     const scope = 'user-read-currently-playing user-read-playback-state'; // Specify scopes as needed

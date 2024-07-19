@@ -15,7 +15,7 @@ const router = useRouter();
 const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.NODE_ENV === 'production'
-    ? 'https://alfastorecommerce.netlify.app/callback'
+    ? 'https://my-spoti.netlify.app/callback'
     : 'http://localhost:3000/callback'; // Replace process.env.NODE_ENV === 'production' 
 
 const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64');
