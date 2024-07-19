@@ -1,21 +1,26 @@
 <script setup>
-// onMounted(() => {
-//     // handleuser()
-// })
-// async function handleuser() {
-//     const supabase = useSupabaseClient()
-//     const { data, error } = await supabase.auth.getSession();
-//     if (error) {
-//         console.error('Error fetching session:', error.message);
-//         return;
-//     }
-//     if (!data.session) {
-//         console.log('no user found');
-
-//     } else {
-//         console.log('User is already logged in:');
-//     }
-// }
+import { getAccessToken } from '~/utils/token';
+onBeforeMount(() => {
+    GetToken()
+})
+// watch token
+async function GetToken() {
+    try {
+        const response = await getAccessToken();
+        if (response) {
+            let token = await response.data
+            // console.log(response);
+            // tokenExist.value = token;
+            // console.log('Token VALID :' + tokenExist.value);
+            // checkCurrentlyPlaying();
+        } else {
+            console.error('Failed to fetch token:', response);
+            navigateTo('/auth')
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 // useSeoMeta({
 //     title: 'Alfa Store - Home',
 //     ogTitle: 'Alfa Store - Home',

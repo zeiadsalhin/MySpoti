@@ -9,7 +9,7 @@
         <div class="bottom-nav1">
           <minspotify />
         </div>
-        <BottomNav />
+        <BottomNav v-if="!$route.path.includes('/auth')" />
       </v-app>
     </NuxtLayout>
   </div>

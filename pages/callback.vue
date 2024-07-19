@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>Authorization Callback</h1>
-        <p>Handling Spotify authorization...</p>
+        <!-- <h1>Authorization Callback</h1> -->
+        <!-- <p>Handling Spotify authorization...</p> -->
     </div>
 </template>
 
@@ -46,11 +46,11 @@ onMounted(async () => {
         const expiresIn = response.data.expires_in;
         const expiryTimestamp = Date.now() + expiresIn * 1000;
         localStorage.setItem('expiryTimestamp', expiryTimestamp);
-        navigateTo('/spotTrack')
+        navigateTo('/')
     } catch (error) {
         //on fail, log the error in console
         console.log(error);
-        navigateTo('/spotTrack')
+        navigateTo('/')
     }
 }
 );
