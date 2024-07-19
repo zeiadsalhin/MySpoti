@@ -12,8 +12,8 @@ import { Buffer } from 'buffer'
 
 const route = useRoute();
 const router = useRouter();
-const client_id = '4a730932376f4ea693ed8077c3be587d';
-const client_secret = '10253d2e780e4f71bb61a6da73241997';
+const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.NODE_ENV === 'production'
     ? 'https://alfastorecommerce.netlify.app/callback'
     : 'http://localhost:3000/callback'; // Replace process.env.NODE_ENV === 'production' 

@@ -1,5 +1,5 @@
 <script setup>
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import { useMainStore } from '~/store';
 import { useTheme } from 'vuetify'
 const theme = useTheme();

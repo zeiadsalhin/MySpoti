@@ -16,8 +16,8 @@ export const refreshAccessToken = async () => {
         body: new URLSearchParams({
             grant_type: 'refresh_token',
             refresh_token: refreshToken,
-            client_id: '4a730932376f4ea693ed8077c3be587d', // Use environment variables for sensitive data
-            client_secret: '10253d2e780e4f71bb61a6da73241997', // Use environment variables for sensitive data
+            client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID, // Use environment variables for sensitive data
+            client_secret: import.meta.env.VITE_SPOTIFY_CLIENT_SECRET, // Use environment variables for sensitive data
         }),
     };
 

@@ -193,7 +193,7 @@ onBeforeMount(async () => {
 // authorize spotify user 
 const router = useRouter();
 const authorize = () => {
-    const client_id = '4a730932376f4ea693ed8077c3be587d';
+    const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
     const redirect_uri = process.env.NODE_ENV === 'production'
         ? 'https://alfastorecommerce.netlify.app/callback'
         : 'http://localhost:3000/callback'; // Replace with your registered redirect URI
