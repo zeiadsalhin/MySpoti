@@ -68,6 +68,7 @@ async function checkCurrentlyPlaying() {
             playData.value = response.data.item;
             const playback = formatMillisecondsToMinSec(response.data.progress_ms, response.data.item.duration_ms);
             playimg.value = response.data.item.album.images[0].url;
+            getDominantColorFromImage(playimg.value)
 
             return true;
         } else {
@@ -226,6 +227,47 @@ nuxtApp.$bus.$on('swipe', (direction) => {
             break;
     }
 })
+
+/// get player color 
+const backgroundColor = ref('');
+
+const getDominantColorFromImage = (imageUrl) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+
+    img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        // Calculate average color (you can use more sophisticated algorithms for dominant color)
+        let r = 0, g = 0, b = 0;
+        let pixelCount = 0;
+
+        for (let i = 0; i < data.length; i += 4) {
+            r += data[i];
+            g += data[i + 1];
+            b += data[i + 2];
+            pixelCount++;
+        }
+
+        r = Math.floor(r / pixelCount);
+        g = Math.floor(g / pixelCount);
+        b = Math.floor(b / pixelCount);
+
+        // Set background color
+        backgroundColor.value = `rgb(${r},${g},${b})`;
+        // console.log(backgroundColor.value);
+    };
+
+    img.src = imageUrl;
+};
 </script>
 <template>
     <v-dialog v-model="fullPlayer" :fullscreen="true" :hide-overlay="true" :opacity="0" close-delay="10000"
@@ -302,8 +344,8 @@ nuxtApp.$bus.$on('swipe', (direction) => {
     </v-dialog>
     <v-slide-y-reverse-transition :duration="2000">
         <v-sheet v-if="playData && playimg && tokenExist" @click="toggleMiniplayer" min-height="auto" height="90"
-            transition="slide-y-transition"
-            class="bg-transparent bg-opacity-50 backdrop-blur-[20px] rounded-xl mx-auto w-[99%]">
+            transition="slide-y-transition" :color="backgroundColor"
+            class="bg-zinc-900a bg-opacity-50 backdrop-blur-[20px] rounded-xl mx-auto w-[99%]">
             <v-sheet :absolute="true" min-height="auto" height="auto" class="bg-transparent mt-5  w-11/12 mx-auto"
                 v-model="miniPlayer" transition="slide-y-transition">
 
