@@ -304,11 +304,10 @@ nuxtApp.$bus.$on('swipe', (direction) => {
         <v-sheet v-if="playData && playimg && tokenExist" @click="toggleMiniplayer" min-height="auto" height="90"
             transition="slide-y-transition"
             class="bg-transparent bg-opacity-50 backdrop-blur-[20px] rounded-xl mx-auto w-[99%]">
-            <v-sheet :absolute="true" min-height="auto" height="auto" class="bg-transparent  w-11/12 mx-auto"
+            <v-sheet :absolute="true" min-height="auto" height="auto" class="bg-transparent mt-5  w-11/12 mx-auto"
                 v-model="miniPlayer" transition="slide-y-transition">
-                <v-progress-linear v-model="progress" :height="3" color="white"></v-progress-linear>
 
-                <div class="content flex w-full mx-auto m-2">
+                <div class="content flex w-full my-auto mx-auto m-4a h-[5rem]">
                     <div class="queue mx-auto flex flex-col justify-center w-full p-a5 min-h[6.8ream] h-[6a.8rem]">
                         <v-lazy>
                             <div class="next max-w-full mx-auto flex justify-between ">
@@ -316,11 +315,11 @@ nuxtApp.$bus.$on('swipe', (direction) => {
                                     <v-img :src="playimg ? playimg : ''" min-width="55" max-width="55" max-height="55"
                                         class="m-1A mt-1.5 rounded-sm"></v-img>
                                     <div class="title text-[0.8rem] min-w-[12rem] w-fit text-left">
-                                        <p class="ml-2 mt-2 my-auto max-w-72 text-left font-semibold text-[1.2rem]">{{
+                                        <p class="ml-2 mt-2 my-auto max-w-72 text-left font-semibold text-[1rem]">{{
                                             (playData?.name)?.length > 21 ?
                                                 (playData?.name).slice(0, 21) + '...' : (playData?.name) }}
                                         </p>
-                                        <p class="opacity-70 ml-2 inline-block my-auto text-left text-[0.9rem] w-full">
+                                        <p class="opacity-70 ml-2 inline-block my-auto text-left text-[0.8rem] w-full">
                                             {{ (playData?.album?.artists[0].name)?.length > 27 ?
                                                 (playData?.album?.artists[0].name).slice(0, 27) + '...' :
                                                 (playData?.album?.artists[0].name) }}
@@ -334,6 +333,7 @@ nuxtApp.$bus.$on('swipe', (direction) => {
                     <button variant="text" :ripple="false" max-width="40" min-width="30" class="m-2  aw-5">
                         <v-icon size="30">mdi-chevron-up</v-icon> </button>
                 </div>
+                <v-progress-linear v-model="progress" :height="3" color="white"></v-progress-linear>
             </v-sheet>
         </v-sheet>
     </v-slide-y-reverse-transition>

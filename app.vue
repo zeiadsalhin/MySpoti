@@ -9,7 +9,9 @@
         <div class="bottom-nav1">
           <minspotify />
         </div>
-        <BottomNav v-if="!$route.path.includes('/auth')" />
+        <div class="BottomNav1">
+          <BottomNav v-if="!$route.path.includes('/auth')" />
+        </div>
       </v-app>
     </NuxtLayout>
   </div>
@@ -40,7 +42,11 @@ useSeoMeta({
   position: fixed;
   bottom: 4.2rem;
   width: 100%;
-  z-index: 10;
+  z-index: 999;
   /* Ensure it's above other content */
+}
+
+.BottomNav1 {
+  z-index: 10;
 }
 </style>
