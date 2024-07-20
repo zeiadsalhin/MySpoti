@@ -375,7 +375,8 @@ const getDominantColorFromImage = (imageUrl) => {
                     <button variant="text" :ripple="false" max-width="40" min-width="30" class="m-2  aw-5">
                         <v-icon size="30">mdi-chevron-up</v-icon> </button>
                 </div>
-                <v-progress-linear v-model="progress" :height="3" color="white"></v-progress-linear>
+                <v-progress-linear v-model="progress" :height="3" color="grey-lighten-4"
+                    class="rounded-2xl"></v-progress-linear>
             </v-sheet>
         </v-sheet>
     </v-slide-y-reverse-transition>
