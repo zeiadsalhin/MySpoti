@@ -1,6 +1,7 @@
 <template>
     <div>
-        <v-bottom-navigation :ripple="false" permanent class="bg-transparent" min-height="auto" height="auto">
+        <v-bottom-navigation :elevation="0" :ripple="false" permanent class="bg-transparent" min-height="auto"
+            height="auto">
             <div class="mt-28 flex justify-center">
                 <nuxt-link to="/" active-Class="text-[#1DB954] brightness-100"
                     class="mx-8 brightness-75 flex flex-col items-center ma-3">
@@ -23,7 +24,7 @@
 </template>
 <style scoped>
 .v-bottom-navigation {
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.011));
-    /* Set linear gradient background */
+    background: linear-gradient(to top, rgba(0, 0, 0, 1)15%, rgba(0, 0, 0, 0) 100%);
+    /* Adjusted linear gradient background */
 }
 </style>

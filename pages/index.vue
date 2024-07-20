@@ -36,7 +36,7 @@ async function GetToken() {
     <div v-if="dataview">
 
 
-        <div class="bg-zinc-100 h-full">
+        <div class="bg-zinc-900 h-full">
             Writing a 300-word college essay is intimidating, especially since that’s not a lot of words to use to say
             exactly what you want. When applying for college, schools use the Common App for students to write their
             admissions essays. These essays are looked over by the admissions committee, which decides if you’re a right
