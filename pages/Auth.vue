@@ -162,6 +162,12 @@ let playInt = null;
 const shouldShowCarousel = ref(true);
 const ShowCarousel = () => {
     shouldShowCarousel.value = false
+    setTimeout(() => {
+        document.getElementById("aaa").classList.remove('translate-y-10');
+        document.getElementById("aaa").classList.add('-translate-y-10');
+        // Apply the Tailwind CSS class
+
+    }, 200);
 };
 
 // // token refresh
@@ -211,60 +217,75 @@ const authorize = () => {
     navigateTo(authUrl, { external: true });
 };
 onMounted(() => {
-    setTimeout(() => {
-        document.getElementById("aaa").classList.remove('translate-y-10');
-        document.getElementById("aaa").classList.add('-translate-y-10');
-        // Apply the Tailwind CSS class
+    // setTimeout(() => {
+    //     document.getElementById("aaa").classList.remove('translate-y-10');
+    //     document.getElementById("aaa").classList.add('-translate-y-10');
+    //     // Apply the Tailwind CSS class
 
-    }, 200);
+    // }, 200);
 })
+
+const step = ref(1)
 </script>
 <template>
     <div>
         <!--intro-->
-        <v-carousel v-if="shouldShowCarousel" progress="green" height="100%" class="p-2" :continuous="false"
-            :hide-delimiters="true" hide-delimiter-background>
-            <template v-slot:prev="{ props }">
-                <v-btn color="success" variant="elevated" @click="props.onClick">Previous</v-btn>
-            </template>
-            <template v-slot:next="{ props }">
-                <v-btn color="info" variant="elevated" @click="props.onClick">Next</v-btn>
-            </template>
-            <v-carousel-item>
-                <div class="h-fit">
-                    <h2 class="text-3xl font-bold px-4 mt-4">Discover</h2>
-                    <p class="text-xl font-semibold px-6 py-2 mb-5 opacity-85">Your Spotify Profile Stats & Tracks</p>
-                    <v-lazy name="fade" mode="out-in">
-                        <v-img id="aaa" src="/s1.jpg" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg" cover
-                            max-height="auto" min-height="450" height="450"></v-img>
-                    </v-lazy>
-                </div>
-            </v-carousel-item>
-            <v-carousel-item>
-                <div class="h-fit">
-                    <h2 class="text-3xl font-bold px-4 mt-4">Analyze</h2>
-                    <p class="text-xl font-semibold px-6 py-2 opacity-85">Your listening activity</p>
-                    <v-img id="aaa" src="/s2.jpg" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
-                        max-height="auto" min-height="450" height="450"></v-img>
-                </div>
-            </v-carousel-item>
-            <v-carousel-item>
-                <div class="h-fit">
-                    <h2 class="text-3xl font-bold px-4 mt-4">Share</h2>
-                    <p class="text-xl font-semibold px-6 py- opacity-85">Your Profile and playlists with friends</p>
-                    <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
-                        max-height="auto" min-height="450" height="450"></v-img>
-                </div>
-            </v-carousel-item>
-            <v-carousel-item>
-                <div class="w-full h-screen">
-                    <div class="flex flex-col justify-center ha-screen m-auto">
-                        <v-btn color="info" variant="elevated" @click="ShowCarousel">Finish</v-btn>
+        <div class="flex flex-col justify-center m-auto h-screena">
+            <v-carousel v-model="step" v-if="shouldShowCarousel" progress="green" height="100%"
+                class="p-2 myCarousel my-auto" :continuous="false" :hide-delimiters="true" :show-arrows="false"
+                hide-delimiter-background>
+                <template v-slot:prev="{ props }">
+                    <v-btn color="success" variant="elevated" @click="props.onClick">Previous</v-btn>
+                </template>
+                <template v-slot:next="{ props }">
+                    <v-btn color="info" variant="elevated" @click="props.onClick">Next</v-btn>
+                </template>
+                <v-carousel-item :value="1">
+                    <div class="h-fit mt-10">
+                        <h2 class="text-3xl font-bold px-4 mt-4">Discover</h2>
+                        <p class="text-xl font-semibold px-6 py-2 mb-16 opacity-85">Your Spotify Profile Stats & Tracks
+                        </p>
+                        <v-lazy name="fade" mode="out-in">
+                            <v-img id="aaa" src="/s1.jpg" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg"
+                                cover max-height="auto" min-height="450" height="450"></v-img>
+                        </v-lazy>
                     </div>
-                </div>
-            </v-carousel-item>
-        </v-carousel>
-        <div v-else>
+                </v-carousel-item>
+                <v-carousel-item :value="2">
+                    <div class="h-fit mt-10">
+                        <h2 class="text-3xl font-bold px-4 mt-4">Analyze</h2>
+                        <p class="text-xl font-semibold px-6 py-2 mb-16 opacity-85">Your listening activity</p>
+                        <v-img id="aaa" src="/s2.jpg" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                            max-height="auto" min-height="450" height="450"></v-img>
+                    </div>
+                </v-carousel-item>
+                <v-carousel-item :value="3">
+                    <div class="h-fit mt-10">
+                        <h2 class="text-3xl font-bold px-4 mt-4">Share</h2>
+                        <p class="text-xl font-semibold px-6 py-2  mb-16 opacity-85">Your Profile and playlists with
+                            friends</p>
+                        <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                            max-height="auto" min-height="450" height="450"></v-img>
+                    </div>
+                </v-carousel-item>
+                <v-carousel-item :value="4">
+                    <div class="w-full h-fit">
+                        <div class="flex flex-col justify-center h-screen m-auto">
+                            <h2 class="text-4xl text-center font-bold px-4 mt-">And more!</h2>
+                            <p class="text-xl text-center font-semibold px-6 py-2  mb-5 opacity-85">Waiting to be
+                                discovered</p>
+                            <v-btn color="green-darken-2" variant="elevated" height="50"
+                                class="text-h5 font-weight-medium" @click="ShowCarousel">Get Started</v-btn>
+                        </div>
+                    </div>
+                </v-carousel-item>
+            </v-carousel>
+            <div v-if="shouldShowCarousel" class="controls flex justify-end p-5">
+                <v-btn v-if="step != 4" color="green" variant="tonal" width="100" height="50"
+                    class="text-h5 font-weight-medium" @click="step++">Next</v-btn>
+            </div>
+        </div>
+        <div v-if="!shouldShowCarousel">
             <v-slide-y-reverse-transition :duration="3000">
                 <v-img id="aaa" src="/wallpaper.jpeg" cover max-height="auto" min-height="100" height="auto"
                     gradient="to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)"
@@ -305,3 +326,9 @@ onMounted(() => {
         <!-- <div v-else class="text-center">{{ playData }}</div> -->
     </div>
 </template>
+<style>
+.myCarousel .v-window__prev,
+.myCarousel .v-window__next {
+    top: 0;
+}
+</style>
