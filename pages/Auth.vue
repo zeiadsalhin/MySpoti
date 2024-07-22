@@ -167,7 +167,7 @@ const ShowCarousel = () => {
         document.getElementById("aaa").classList.add('-translate-y-10');
         // Apply the Tailwind CSS class
 
-    }, 200);
+    }, 1000);
 };
 
 // // token refresh
