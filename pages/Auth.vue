@@ -262,8 +262,7 @@ const step = ref(1)
                 <v-carousel-item :value="3">
                     <div class="h-fit mt-10">
                         <h2 class="text-3xl font-bold px-4 mt-4">Share</h2>
-                        <p class="text-xl font-semibold px-6 py-2  mb-16 opacity-85">Your Profile and playlists with
-                            friends</p>
+                        <p class="text-xl font-semibold px-6 py-2  mb-16 opacity-85">Your Profile and playlists</p>
                         <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
                             max-height="auto" min-height="450" height="450"></v-img>
                     </div>
@@ -275,14 +274,15 @@ const step = ref(1)
                             <p class="text-xl text-center font-semibold px-6 py-2  mb-5 opacity-85">Waiting to be
                                 discovered</p>
                             <v-btn color="green-darken-2" variant="elevated" height="50"
-                                class="text-h5 font-weight-medium" @click="ShowCarousel">Get Started</v-btn>
+                                class="text-h5 w-11/12 mx-auto font-weight-medium" @click="ShowCarousel">Get
+                                Started</v-btn>
                         </div>
                     </div>
                 </v-carousel-item>
             </v-carousel>
             <div v-if="shouldShowCarousel" class="controls flex justify-end p-5">
-                <v-btn v-if="step != 4" color="green" variant="tonal" width="100" height="50"
-                    class="text-h5 font-weight-medium" @click="step++">Next</v-btn>
+                <v-btn v-if="step != 4" color="green-lighten-1" variant="tonal" width="120" height="50"
+                    class="text-h6 font-weight-medium" @click="step++">Next</v-btn>
             </div>
         </div>
         <div v-if="!shouldShowCarousel">
