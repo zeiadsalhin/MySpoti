@@ -159,6 +159,11 @@ let playInt = null;
 //     }
 // });
 
+const shouldShowCarousel = ref(true);
+const ShowCarousel = () => {
+    shouldShowCarousel.value = false
+};
+
 // // token refresh
 async function WatchTokenExp() {
     try {
@@ -216,47 +221,81 @@ onMounted(() => {
 </script>
 <template>
     <div>
-        <v-img id="aaa" src="/wallpaper.jpeg" cover max-height="auto" min-height="100" height="auto"
-            gradient="to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)"
-            class="aaa translate-y-10  h-screen min-h-screen max-h-screen transform transition-all ease-in-out duration-1000 fade-in">
-            <div v-if="tokenExist == null" class="flex flex-col justify-center items-center h-screen w-full">
-
-                <div class="images flex justify-center space-x-4">
-                    <v-img src="/my-spoti-white.svg" max-width="150" max-height="150" min-width="150" min-height="150"
-                        class="pa-3 my-auto"></v-img>
-                    <svg class="my-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        version="1.1" width="25" height="25" viewBox="0 0 256 256" xml:space="preserve">
-                        <defs>
-                        </defs>
-                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 1; fill: none; fill-rule: nonzero; opacity: 0.7;"
-                            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                            <path
-                                d="M 41.242 69.371 l -8.953 8.954 c -0.288 0.287 -0.627 0.331 -0.803 0.331 c -0.176 0 -0.515 -0.044 -0.803 -0.332 L 11.676 59.317 c -0.443 -0.443 -0.443 -1.163 0 -1.606 l 24.98 -24.98 c 0.288 -0.288 0.626 -0.331 0.802 -0.331 h 0 c 0.176 0 0.515 0.043 0.803 0.331 l 16.362 16.362 l 8.025 -8.025 L 46.287 24.707 c -4.869 -4.869 -12.789 -4.868 -17.657 0 L 3.65 49.686 c -4.867 4.868 -4.867 12.789 0 17.656 l 19.007 19.007 c 2.434 2.434 5.631 3.65 8.828 3.65 c 3.197 0 6.394 -1.217 8.827 -3.65 l 13.961 -13.961 C 50.063 74.716 46.357 73.631 41.242 69.371 z"
-                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 1; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                            <path
-                                d="M 48.758 20.629 l 8.953 -8.954 c 0.288 -0.287 0.627 -0.331 0.803 -0.331 c 0.176 0 0.515 0.044 0.803 0.332 l 19.007 19.007 c 0.443 0.443 0.443 1.163 0 1.606 l -24.98 24.98 c -0.288 0.288 -0.626 0.331 -0.802 0.331 h 0 c -0.176 0 -0.515 -0.043 -0.803 -0.331 L 35.377 40.907 l -8.025 8.025 l 16.362 16.361 c 4.869 4.869 12.789 4.868 17.657 0 l 24.98 -24.979 c 4.867 -4.868 4.867 -12.789 0 -17.656 L 67.342 3.651 C 64.908 1.217 61.711 0 58.514 0 c -3.197 0 -6.394 1.217 -8.827 3.65 L 35.725 17.611 C 39.937 15.284 43.643 16.369 48.758 20.629 z"
-                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 1; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                        </g>
-                    </svg>
-                    <v-img src="/public/spotify.svg" max-width="80" max-height="80" min-width="80" min-height="80"
-                        class="my-auto brightness-75 invert"></v-img>
+        <!--intro-->
+        <v-carousel v-if="shouldShowCarousel" progress="green" height="100%" class="p-2" :continuous="false"
+            :hide-delimiters="true" hide-delimiter-background>
+            <template v-slot:prev="{ props }">
+                <v-btn color="success" variant="elevated" @click="props.onClick">Previous</v-btn>
+            </template>
+            <template v-slot:next="{ props }">
+                <v-btn color="info" variant="elevated" @click="props.onClick">Next</v-btn>
+            </template>
+            <v-carousel-item>
+                <div class="h-fit">
+                    <h2 class="text-3xl font-bold px-4 mt-4">Discover</h2>
+                    <p class="text-xl font-semibold px-6 py-2 mb-5 opacity-85">Your Spotify Profile Stats & Tracks</p>
+                    <v-lazy name="fade" mode="out-in">
+                        <v-img id="aaa" src="/s1.jpg" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg" cover
+                            max-height="auto" min-height="450" height="450"></v-img>
+                    </v-lazy>
                 </div>
+            </v-carousel-item>
+            <v-carousel-item>
+                <div class="h-fit">
+                    <h2 class="text-3xl font-bold px-4 mt-4">Analyze</h2>
+                    <p class="text-xl font-semibold px-6 py-2 opacity-85">Your listening activity</p>
+                    <v-img id="aaa" src="/s2.jpg" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                        max-height="auto" min-height="450" height="450"></v-img>
+                </div>
+            </v-carousel-item>
+            <v-carousel-item>
+                <div class="h-fit">
+                    <h2 class="text-3xl font-bold px-4 mt-4">Share</h2>
+                    <p class="text-xl font-semibold px-6 py- opacity-85">Your Profile and playlists with friends</p>
+                    <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                        max-height="auto" min-height="450" height="450"></v-img>
+                </div>
+            </v-carousel-item>
+            <v-carousel-item>
+                <div class="w-full h-screen">
+                    <div class="flex flex-col justify-center ha-screen m-auto">
+                        <v-btn color="info" variant="elevated" @click="ShowCarousel">Finish</v-btn>
+                    </div>
+                </div>
+            </v-carousel-item>
+        </v-carousel>
+        <div v-else>
+            <v-slide-y-reverse-transition :duration="3000">
+                <v-img id="aaa" src="/wallpaper.jpeg" cover max-height="auto" min-height="100" height="auto"
+                    gradient="to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)"
+                    class="aaa translate-y-10 h-screen min-h-screen max-h-screen transform transition-all ease-in-out duration-1000 fade-in">
+                    <div v-if="tokenExist == null" class="flex flex-col justify-center items-center h-screen w-full">
+                        <div class="images flex justify-center space-x-4">
+                            <v-img src="/my-spoti-white.svg" max-width="150" max-height="150" min-width="150"
+                                min-height="150" class="pa-3 my-auto"></v-img>
+                            <svg class="my-auto" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="25" height="25"
+                                viewBox="0 0 256 256" xml:space="preserve">
+                                <!-- SVG content here -->
+                            </svg>
+                            <v-img src="/public/spotify.svg" max-width="80" max-height="80" min-width="80"
+                                min-height="80" class="my-auto brightness-75 invert"></v-img>
+                        </div>
+                        <h1 class="text-[2rem] font-black p-3">Welcome to My Spoti !</h1>
+                        <p class="text-lg text-center font-semibold mt-3 p-3">To Start the App please Connect your
+                            Spotify Account
+                        </p>
+                        <p class="text- text-center font-semibold mt-3 mb-6">Click the button below to authorize your
+                            Spotify
+                            account.</p>
+                        <button @click="authorize"
+                            class="bg-zinc-800 p-4 font-semibold focus:ring-4 ring-green-700 focus:scale-105 text-md rounded-3xl"
+                            variant="tonal" rounded="xl">Authorize Spotify</button>
+                    </div>
+                </v-img>
+            </v-slide-y-reverse-transition>
+        </div>
 
-                <h1 class="text-[2rem] font-black p-3">Welcome to My Spoti !</h1>
-                <p class="text-lg text-center font-semibold mt-3 p-3">To Start the App please Connect your Spotify
-                    Account
-                </p>
-                <p class="text- text-center font-semibold mt-3 mb-6">Click the button below to authorize your Spotify
-                    account.
-                </p>
-                <button @click="authorize"
-                    class="bg-zinc-800 p-4 font-semibold focus:ring-4 ring-green-700 focus:scale-105 text-md rounded-3xl"
-                    variant="tonal" rounded="xl">Authorize
-                    Spotify</button>
-            </div>
-        </v-img>
         <!-- <div v-if="!playData && tokenExist" class="flex justify-center items-center min-h-screen">
             <v-progress-circular color="grey-darken-1" indeterminate class="my-auto"></v-progress-circular>
         </div> -->

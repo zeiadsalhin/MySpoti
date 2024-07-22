@@ -59,6 +59,13 @@ const copyToClipboard = () => {
     navigator.clipboard.writeText(textToCopy)
     copied.value = true
 }
+// Copy 2
+const copiedURL = ref(false);
+const copyToClipboardURL = () => {
+    // const textToCopy = profileURL.value;
+    navigator.clipboard.writeText(profileURL.value)
+    copiedURL.value = true
+}
 
 </script>
 <template>
@@ -82,9 +89,8 @@ const copyToClipboard = () => {
                         size="19" class="mx-2">{{ copied ? 'mdi-check' : 'mdi-content-copy' }}</v-icon></p>
             </div>
             <div class="welcome flex flex-col w-fit h-fit  ml-7 mt-7 space-x-3">
-                <p class="font-semibold text-lg text-left my-auto">Spotify URL:
-                    <a :href="profileURL" class="max-w-fit p-1 text-left my-auto opacity-80"><v-btn
-                            variant="tonal">Visit</v-btn></a>
+                <p class="font-semibold text-lg text-left my-auto">Spotify URL:<v-icon @click="copyToClipboardURL"
+                        size="19" class="mx-2">{{ copiedURL ? 'mdi-check' : 'mdi-content-copy' }}</v-icon>
                 </p>
 
             </div>

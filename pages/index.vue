@@ -13,13 +13,14 @@ async function GetToken() {
         if (response) {
             dataview.value = true
             let token = await response.data
-            const userData = await getUserData();
-            displayname.value = userData.display_name
+
 
         } else {
             console.error('Failed to fetch token:', response);
             navigateTo('/auth')
         }
+        const userData = await getUserData();
+        displayname.value = userData.display_name
     } catch (error) {
         console.error('Error:', error);
     }

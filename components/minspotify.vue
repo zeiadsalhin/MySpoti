@@ -179,25 +179,25 @@ async function WatchTokenExp() {
 }
 // WatchTokenExp();
 
-onBeforeMount(async () => {
-    try {
-        // Initialize tokenExist.value here, assuming it's done somewhere in your code
-        await WatchTokenExp();
-        if (!tokenExist.value) {
-            const TokenListen = setInterval(async () => {
-                await WatchTokenExp();
-                // console.log('interval');
-                if (tokenExist.value) {
-                    clearInterval(TokenListen);
-                    // console.log('INTERVAL cleared');
-                    return false;
-                }
-            }, 4000);
-        }
-    } catch (error) {
-        console.error('Error during mount:', error);
-    }
-});
+// onBeforeMount(async () => {
+//     try {
+//         // Initialize tokenExist.value here, assuming it's done somewhere in your code
+//         await WatchTokenExp();
+//         if (!tokenExist.value) {
+//             const TokenListen = setInterval(async () => {
+//                 await WatchTokenExp();
+//                 // console.log('interval');
+//                 if (tokenExist.value) {
+//                     clearInterval(TokenListen);
+//                     // console.log('INTERVAL cleared');
+//                     return false;
+//                 }
+//             }, 4000);
+//         }
+//     } catch (error) {
+//         console.error('Error during mount:', error);
+//     }
+// });
 
 const fullPlayer = ref(false)
 const miniPlayer = ref(true)
