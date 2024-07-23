@@ -242,8 +242,8 @@ const step = ref(1)
                 </template>
                 <v-carousel-item :value="1">
                     <div class="h-fit mt-10">
-                        <h2 class="text-3xl font-bold px-4 mt-4">Discover</h2>
-                        <p class="text-xl font-semibold px-6 py-2 mb-16 opacity-85">Your Spotify Profile Stats & Tracks
+                        <h2 class="text-4xl font-extrabold px-4 mt-4">Discover</h2>
+                        <p class="text-xl font-bold px-6 py-2 mb-16 opacity-85">Your Spotify Profile Stats & Tracks
                         </p>
                         <v-lazy name="fade" mode="out-in">
                             <v-img id="aaa" src="/s1.jpg" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg"
@@ -253,16 +253,16 @@ const step = ref(1)
                 </v-carousel-item>
                 <v-carousel-item :value="2">
                     <div class="h-fit mt-10">
-                        <h2 class="text-3xl font-bold px-4 mt-4">Analyze</h2>
-                        <p class="text-xl font-semibold px-6 py-2 mb-16 opacity-85">Your listening activity</p>
+                        <h2 class="text-4xl font-extrabold px-4 mt-4">Analyze</h2>
+                        <p class="text-xl font-bold px-6 py-2 mb-16 opacity-85">Your listening activity</p>
                         <v-img id="aaa" src="/s2.jpg" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
                             max-height="auto" min-height="450" height="450"></v-img>
                     </div>
                 </v-carousel-item>
                 <v-carousel-item :value="3">
                     <div class="h-fit mt-10">
-                        <h2 class="text-3xl font-bold px-4 mt-4">Share</h2>
-                        <p class="text-xl font-semibold px-6 py-2  mb-16 opacity-85">Your Profile and playlists</p>
+                        <h2 class="text-4xl font-extrabold px-4 mt-4">Share</h2>
+                        <p class="text-xl font-bold px-6 py-2  mb-16 opacity-85">Your Profile and playlists</p>
                         <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
                             max-height="auto" min-height="450" height="450"></v-img>
                     </div>
@@ -271,9 +271,9 @@ const step = ref(1)
                     <div class="w-full h-fit">
                         <div class="flex flex-col justify-center h-screen m-auto">
                             <h2 class="text-4xl text-center font-bold px-4 mt-">And more!</h2>
-                            <p class="text-xl text-center font-semibold px-6 py-2  mb-5 opacity-85">Waiting to be
+                            <p class="text-xl text-center font-bold px-6 py-2  mb-5 opacity-85">Waiting to be
                                 discovered</p>
-                            <v-btn color="green-darken-2" variant="elevated" height="50"
+                            <v-btn color="green-darken-4" variant="elevated" height="50"
                                 class="text-h5 w-11/12 mx-auto font-weight-medium" @click="ShowCarousel">Get
                                 Started</v-btn>
                         </div>
@@ -281,8 +281,8 @@ const step = ref(1)
                 </v-carousel-item>
             </v-carousel>
             <div v-if="shouldShowCarousel" class="controls flex justify-end p-5">
-                <v-btn v-if="step != 4" color="green-lighten-1" variant="tonal" width="120" height="50"
-                    class="text-h6 font-weight-medium" @click="step++">Next</v-btn>
+                <v-btn v-if="step != 4" color="green-lighten-1" variant="tonal" width="140" height="45"
+                    class="text-h6 font-weight-bold" @click="step++">Next</v-btn>
             </div>
         </div>
         <div v-if="!shouldShowCarousel">
@@ -299,8 +299,8 @@ const step = ref(1)
                                 viewBox="0 0 256 256" xml:space="preserve">
                                 <!-- SVG content here -->
                             </svg>
-                            <v-img src="/public/spotify.svg" max-width="80" max-height="80" min-width="80"
-                                min-height="80" class="my-auto brightness-75 invert"></v-img>
+                            <v-img src="/spotify.svg" max-width="80" max-height="80" min-width="80" min-height="80"
+                                class="my-auto brightness-75 invert"></v-img>
                         </div>
                         <h1 class="text-[2rem] font-black p-3">Welcome to My Spoti !</h1>
                         <p class="text-lg text-center font-semibold mt-3 p-3">To Start the App please Connect your
