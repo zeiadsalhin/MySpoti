@@ -246,7 +246,7 @@ const step = ref(1)
                         <p class="text-xl font-bold px-6 py-2 mb-16 opacity-85">Your Spotify Profile Stats & Tracks
                         </p>
                         <v-lazy name="fade" mode="out-in">
-                            <v-img id="aaa" src="/s1.jpg" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg"
+                            <v-img id="aaa" src="/s1.webp" class="m-8 -rotate-2 translate-x-2 opacity-90 rounded-lg"
                                 cover max-height="auto" min-height="450" height="450"></v-img>
                         </v-lazy>
                     </div>
@@ -255,7 +255,7 @@ const step = ref(1)
                     <div class="h-fit mt-10">
                         <h2 class="text-4xl font-extrabold px-4 mt-4">Analyze</h2>
                         <p class="text-xl font-bold px-6 py-2 mb-16 opacity-85">Your listening activity</p>
-                        <v-img id="aaa" src="/s2.jpg" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                        <v-img id="aaa" src="/s2.webp" class="m-8 rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
                             max-height="auto" min-height="450" height="450"></v-img>
                     </div>
                 </v-carousel-item>
@@ -263,7 +263,7 @@ const step = ref(1)
                     <div class="h-fit mt-10">
                         <h2 class="text-4xl font-extrabold px-4 mt-4">Share</h2>
                         <p class="text-xl font-bold px-6 py-2  mb-16 opacity-85">Your Profile and playlists</p>
-                        <v-img id="aaa" src="/s3.jpg" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
+                        <v-img id="aaa" src="/s3.webp" class="m-8 -rotate-2 -translate-x-2 opacity-90 rounded-lg" cover
                             max-height="auto" min-height="450" height="450"></v-img>
                     </div>
                 </v-carousel-item>
@@ -326,9 +326,3 @@ const step = ref(1)
         <!-- <div v-else class="text-center">{{ playData }}</div> -->
     </div>
 </template>
-<style>
-.myCarousel .v-window__prev,
-.myCarousel .v-window__next {
-    top: 0;
-}
-</style>
