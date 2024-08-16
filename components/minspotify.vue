@@ -262,7 +262,7 @@ const getDominantColorFromImage = (imageUrl) => {
         b = Math.floor(b / pixelCount);
 
         // Set background color
-        backgroundColor.value = `rgb(${r},${g},${b})`;
+        backgroundColor.value = `rgb(${r},${g},${b}, 0.6)`;
         // console.log(backgroundColor.value);
     };
 
