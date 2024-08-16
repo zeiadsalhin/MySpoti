@@ -14,7 +14,7 @@ const router = useRouter();
 const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 const redirect_uri = 'http://localhost:3000/callback'; // Replace with your registered redirect URI
-const scope = 'user-read-playback-state'
+const scope = 'user-read-playback-state user-read-currently-playing user-read-email user-read-private user-library-read user-library-modify user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private streaming app-remote-control user-modify-playback-state';
 // const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64');
 const code = route.query.code;
 const handleAuthorization = () => {

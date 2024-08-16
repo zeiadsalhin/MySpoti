@@ -209,7 +209,7 @@ const authorize = () => {
         ? 'https://my-spoti.netlify.app/callback'
         : 'http://localhost:3000/callback'; // Replace with your registered redirect URI
 
-    const scope = 'user-read-currently-playing user-read-playback-state'; // Specify scopes as needed
+    const scope = 'user-read-playback-state user-read-currently-playing user-read-email user-read-private user-library-read user-library-modify user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private streaming app-remote-control user-modify-playback-state';
 
     const authUrl = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=code&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${encodeURIComponent(scope)}`;
 
