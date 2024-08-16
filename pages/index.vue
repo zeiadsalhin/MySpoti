@@ -35,7 +35,8 @@ async function GetToken() {
 // })
 </script>
 <template>
-    <div v-if="dataview" class=" md:w-1/2 p-4 mx-auto">
+    <div v-if="dataview" class=" md:w-3/4 p-4 mx-auto">
         <h1 class="text-xl p-3 font-bold">Welcome, {{ displayname }}</h1>
+        <Topitems />
     </div>
 </template>
