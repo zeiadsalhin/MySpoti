@@ -18,6 +18,7 @@ const totalMilliseconds = ref(0);
 const progress = ref(0);
 const nextQueue = ref(null);
 const currQueue = ref(null);
+const isPlaying = ref(true);
 let playInt = null;
 
 // Simulate progress update (replace with your actual logic)
@@ -71,6 +72,7 @@ async function checkCurrentlyPlaying() {
             playimg.value = response.data.item.album.images[0].url;
             getDominantColorFromImage(playimg.value)
             createSilentVideoPlayer(playData.value);
+            isPlaying.value = true
 
             return true;
         } else {
@@ -112,6 +114,57 @@ async function getQueue() {
         console.log('Queue: ' + error);
     }
 }
+
+// controls 
+
+// Toggle play/pause
+const togglePlayPause = async () => {
+    const accessToken = tokenExist.value;
+    const url = `https://api.spotify.com/v1/me/player/${isPlaying.value ? 'pause' : 'play'}`;
+    try {
+        await axios.put(url, {}, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        isPlaying.value = !isPlaying.value; // Toggle play state
+    } catch (error) {
+        console.error('Error toggling play/pause:', error);
+    }
+};
+
+// Skip to next track
+const nextTrack = async () => {
+    const accessToken = tokenExist.value;
+    const url = 'https://api.spotify.com/v1/me/player/next';
+    try {
+        await axios.post(url, {}, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        await checkCurrentlyPlaying(); // Refresh the track information
+    } catch (error) {
+        console.error('Error skipping to next track:', error);
+    }
+};
+
+// Skip to previous track
+const previousTrack = async () => {
+    const accessToken = tokenExist.value;
+    const url = 'https://api.spotify.com/v1/me/player/previous';
+    try {
+        await axios.post(url, {}, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        await checkCurrentlyPlaying(); // Refresh the track information
+    } catch (error) {
+        console.error('Error skipping to previous track:', error);
+    }
+};
+
 
 // Watch for changes in playData to call changeQueue
 watch(() => playData?.value?.name, (newVal, oldVal) => {
@@ -315,6 +368,25 @@ const getDominantColorFromImage = (imageUrl) => {
                                 <p class="p-2">{{ startTime }}</p>
                                 <p class="p-2">{{ endTime }}</p>
                             </div>
+
+                            <!-- Controls for Play, Pause, Next, and Previous -->
+                            <div class="controls flex justify-around max-w-[18rem] mx-auto my-4">
+                                <!-- Previous Button -->
+                                <v-btn icon @click="previousTrack" variant="text">
+                                    <v-icon size="40">mdi-skip-previous</v-icon>
+                                </v-btn>
+
+                                <!-- Play/Pause Button -->
+                                <v-btn icon @click="togglePlayPause" variant="text">
+                                    <v-icon size="40">{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                                </v-btn>
+
+                                <!-- Next Button -->
+                                <v-btn icon @click="nextTrack" variant="text">
+                                    <v-icon size="40">mdi-skip-next</v-icon>
+                                </v-btn>
+                            </div>
+
 
                             <div v-if="currQueue"
                                 class="queue mx-auto flex flex-col justify-center p-5 min-h[6.8rem] h-[6.8rem] bga-white">
