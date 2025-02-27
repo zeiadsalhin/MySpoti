@@ -128,6 +128,7 @@ const togglePlayPause = async () => {
             }
         });
         isPlaying.value = !isPlaying.value; // Toggle play state
+        await checkCurrentlyPlaying(); // Refresh the track information
     } catch (error) {
         console.error('Error toggling play/pause:', error);
     }

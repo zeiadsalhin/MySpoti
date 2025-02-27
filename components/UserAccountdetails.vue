@@ -18,22 +18,47 @@ const followers = ref(null);
 const country = ref(null);
 const signin = ref()
 const auth = ref()
+const followedArtists = ref([]); // Ref for followed artists
+const isLoading = ref(false);
+
 onBeforeMount(() => {
-    FetchUserData()
+    FetchUserData();
+    FetchFollowedArtists();
 })
-//fetch user data
+
+// Fetch user data
 async function FetchUserData() {
     try {
         const userData = await getUserData();
         // console.log(userData);
         dataview.value = true
         avatar.value = userData.images[0]
+        country.value = userData.country
         displayname.value = userData.display_name
         userID.value = userData.id
         profileURL.value = userData.external_urls.spotify
         followers.value = userData.followers.total
     } catch (error) {
         console.log(error);
+    }
+}
+
+// Fetch followed artists
+async function FetchFollowedArtists() {
+    isLoading.value = true;
+    try {
+        const accessToken = localStorage.getItem('access_token'); // Make sure token is set
+        const response = await axios.get('https://api.spotify.com/v1/me/following?type=artist&limit=10', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        followedArtists.value = response.data.artists.items;
+        isLoading.value = false;
+    } catch (error) {
+        console.error("Error fetching followed artists:", error);
+        isLoading.value = false;
     }
 }
 
@@ -68,18 +93,20 @@ const copyToClipboardURL = () => {
 }
 
 </script>
+
 <template>
     <div>
         <div v-if="dataview" class=" md:w-1/2  apx-4 md:p-5 text-center mx-auto">
             <h1 class="text-xl p-3 font-bold">Account And Privacy</h1>
 
-            <div class="welcome flex w-full h-fit space-x-3 p-2">
-                <div class="w-1.5 h-10 bg-zinc-950 rounded-sm"></div>
-                <p class="font-semibold text-xl text-left my-auto">Logged in as {{ displayname }}
+            <div class="welcome flex flex-col-reverse justify-center w-full h-fit space-x-3 p-2">
+                <p>{{ country }}</p>
+                <div class="w-10 h-1.5 bg-zinc-900 rounded-sm mx-auto my-5"></div>
+                <p class="font-semibold text-xl text-lefta my-auto">Logged in as {{ displayname }}
                 </p>
                 <div class="icon p-"><v-img v-if="avatar" :src="avatar" width="50"
                         class="mx-auto rounded-full min-h-[3.1rem] outline outline-2 outline-green-600"></v-img>
-                    <v-icon v-else size="40" class="opacity-80">mdi-account-outline</v-icon>
+                    <v-icon v-else size="100" class="opacity-80">mdi-account-outline</v-icon>
                 </div>
             </div>
             <div class="welcome flex flex-col w-fit h-fit  ml-7  space-x-3">
@@ -89,14 +116,19 @@ const copyToClipboardURL = () => {
                         size="19" class="mx-2">{{ copied ? 'mdi-check' : 'mdi-content-copy' }}</v-icon></p>
             </div>
             <div class="welcome flex flex-col w-fit h-fit  ml-7 mt-7 space-x-3">
-                <p class="font-semibold text-lg text-left my-auto">Spotify URL:<v-icon @click="copyToClipboardURL"
+                <p class="font-semibold text-lg text-left my-auto">Spotify URL: copy<v-icon @click="copyToClipboardURL"
                         size="19" class="mx-2">{{ copiedURL ? 'mdi-check' : 'mdi-content-copy' }}</v-icon>
                 </p>
-
             </div>
-            <div class="welcome flex flex-col justify-center p-10">
-                <p class="text-2xl font-bold">{{ followers }}</p>
-                <p>Followers</p>
+            <div class="follow flex justify-center">
+                <div class="welcome flex flex-col justify-center p-10">
+                    <p class="text-2xl font-bold">{{ followers }}</p>
+                    <p>Followers</p>
+                </div>
+                <div class="welcome flex flex-col justify-center p-10">
+                    <p class="text-2xl font-bold">{{ followedArtists.length }}</p>
+                    <p>Following</p>
+                </div>
             </div>
             <div class="bg-zinc-800 w-1/3 mx-auto h-0.5 mt-10 mb-5"></div>
             <v-btn @click="LogOut" min-height="40" min-width="100" :elevation="0" class="m-5"

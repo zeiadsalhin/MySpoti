@@ -113,24 +113,26 @@ onMounted(() => {
                         <h2 class="my-auto text-xl p-2 font-semibold">
                             <p class="font-black text-2xl inline-block">#1</p> Top Tracks
                         </h2>
-                        <div class="flex">
+                        <div class="flex text-left">
                             <v-menu transition="slide-y-transition" class="pa-2">
                                 <template v-slot:activator="{ props }">
-                                    <v-btn v-bind="props" class="mr-5a my-auto text-subtitle-1" variant="text"
-                                        icona>select
-                                        period</v-btn>
+                                    <v-btn v-bind="props" class="mr-5a my-auto text-subtitle-1" variant="text" icona>
+                                        <v-icon>mdi-chevron-down</v-icon>
+                                        {{ term === 'long_term' ? 'All time' : (term === 'medium_term' ?
+                                            'Past 6 months' : 'latest time') }}
+                                    </v-btn>
                                 </template>
                                 <v-list>
                                     <v-list-item> <button @click="selectTerm('long_term')"
-                                            class="w-full flex justify-start bg-transparent">All time
+                                            class="flex justify-start bg-transparent">All time
                                         </button>
                                     </v-list-item>
                                     <v-list-item> <button @click="selectTerm('medium_term')"
-                                            class="w-full justify-start bg-transparent">Past 6
+                                            class="justify-start bg-transparent">Past 6
                                             Months</button>
                                     </v-list-item>
                                     <v-list-item> <button @click="selectTerm('short_term')"
-                                            class="w-full justify-start bg-transparent">latest
+                                            class="justify-start bg-transparent">latest
                                             time </button>
                                     </v-list-item>
                                 </v-list>
@@ -177,21 +179,22 @@ onMounted(() => {
                         <div class="flex">
                             <v-menu transition="slide-y-transition" class="pa-2">
                                 <template v-slot:activator="{ props }">
-                                    <v-btn v-bind="props" class="mr-5a my-auto text-subtitle-1" variant="text"
-                                        icona>select
-                                        period</v-btn>
+                                    <v-btn v-bind="props" class="mr-5a my-auto text-subtitle-1" variant="text" icona>
+                                        <v-icon>mdi-chevron-down</v-icon>
+                                        {{ termArtists === 'long_term' ? 'All time' : (termArtists === 'medium_term' ?
+                                            'Past 6 months' : 'latest time') }}</v-btn>
                                 </template>
                                 <v-list>
                                     <v-list-item> <button @click="selectTermArtists('long_term')"
-                                            class="w-full flex justify-start bg-transparent">All time
+                                            class="flex justify-start bg-transparent">All time
                                         </button>
                                     </v-list-item>
                                     <v-list-item> <button @click="selectTermArtists('medium_term')"
-                                            class="w-full justify-start bg-transparent">Past 6
+                                            class="justify-start bg-transparent">Past 6
                                             Months</button>
                                     </v-list-item>
                                     <v-list-item> <button @click="selectTermArtists('short_term')"
-                                            class="w-full justify-start bg-transparent">latest
+                                            class="justify-start bg-transparent">latest
                                             time </button>
                                     </v-list-item>
                                 </v-list>
@@ -210,7 +213,7 @@ onMounted(() => {
                                     class="flex-none max-w-[7rem] w-[7rem] min-w-[7rem] text-righta mx-autoa backdrop-blur-3xl p-2">
                                     <nuxt-link :to="artist.external_urls.spotify">
                                         <v-img :src="artist.images[0].url"
-                                            class="w-[7rem] min-w-[7rem] h-[7rem] min-h-[7rem] rounded-sm" width="100%"
+                                            class="w-[7rem] min-w-[7rem] h-[8rem] min-h-[8rem] rounded-sm" width="100%"
                                             height="100%" cover alt="artists"></v-img>
                                         <div class="flex flex-col justify-start">
                                             <p class="text-m p-1 text-sm font-semibold">{{
