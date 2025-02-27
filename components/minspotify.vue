@@ -79,6 +79,7 @@ async function checkCurrentlyPlaying() {
             // console.log('No track currently playing.');
             playData.value = 'No track currently playing.';
             playimg.value = '';
+            isPlaying.value = false
             return false;
         }
     } catch (error) {
@@ -414,7 +415,15 @@ const getDominantColorFromImage = (imageUrl) => {
                     </div>
                 </v-img>
             </v-lazy>
-            <div v-else class="text-center">{{ playData }}</div>
+            <div v-else class="text-center">{{ playData }}
+                <div class="p-10">
+                    <p class="font-bold text-xl">Play Recent Track</p>
+                    <!-- Play/Pause Button -->
+                    <v-btn icon @click="togglePlayPause" variant="tonal" class="m-2">
+                        <v-icon size="40">{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                    </v-btn>
+                </div>
+            </div>
         </Swipe>
     </v-dialog>
     <v-slide-y-reverse-transition :duration="2000">
