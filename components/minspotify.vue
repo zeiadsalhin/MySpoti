@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ref, watchEffect, watch, onMounted } from 'vue';
 import fetchWithAuth from '~/utils/api';
+import { createSilentVideoPlayer } from '@/utils/mediaSession';
 import { getAccessToken } from '~/utils/token';
 
 const tokenExist = ref(null);
@@ -69,6 +70,7 @@ async function checkCurrentlyPlaying() {
             const playback = formatMillisecondsToMinSec(response.data.progress_ms, response.data.item.duration_ms);
             playimg.value = response.data.item.album.images[0].url;
             getDominantColorFromImage(playimg.value)
+            createSilentVideoPlayer(playData.value);
 
             return true;
         } else {
